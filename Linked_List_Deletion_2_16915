@@ -1,0 +1,66 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Node {
+    public:
+    int data;
+    Node* next;
+};
+
+Node* head=NULL;
+void insert(int x) {
+    Node* n=new Node;
+    n->data=x;
+    if(head==NULL) {
+        head=n;
+        n->next=NULL;
+    }
+    else {
+        Node* ptr;
+        ptr=head;
+        while(ptr->next!=NULL) {
+            ptr=ptr->next;
+        }
+        ptr->next=n;
+        n->next=NULL;
+    }
+}
+
+void display() {
+    int flag=-1;
+    Node* ptr;
+    ptr=head;
+    while(ptr!=NULL) {
+        if((ptr->data)%2==0) {
+            flag=0;
+            break;
+        }
+        ptr=ptr->next;
+    }
+    if(flag==-1) {
+        cout<<"No even number present"<<endl;
+        exit(0);
+    }
+    while(ptr!=NULL) {
+        if((ptr->data)%2==1) {
+            cout<<ptr->data<<" ";
+        }
+        ptr=ptr->next;
+    }
+}
+
+int main() {
+    int x;
+    do {
+        cin>>x;
+        if(x!=-1) {
+            insert(x);
+        }
+    }while(x!=-1);
+    display();
+    return 0;
+}
