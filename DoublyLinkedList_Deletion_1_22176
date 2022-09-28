@@ -1,0 +1,72 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Node {
+    public:
+    int data;
+    Node* next;
+    Node* prev;
+};
+Node* head=NULL;
+Node* tail=NULL;
+void insert(int x) {
+    Node* n=new Node;
+    n->data=x;
+    if(head==NULL) {
+        head=n;
+        head->prev=NULL;
+        tail=n;
+        tail->next=NULL;
+    }
+    else {
+        tail->next=n;
+        n->prev=tail;
+        tail=n;
+        tail->next=NULL;
+    }
+}
+
+void delete_last() {
+    tail=tail->prev;
+    tail->next=NULL;
+}
+
+void displayf() {
+    Node* ptr;
+    ptr=head;
+    while(ptr!=NULL) {
+        cout<<ptr->data<<" ";
+        ptr=ptr->next;
+    }
+}
+
+void displayl() {
+    Node* ptr;
+    ptr=tail;
+    while(ptr!=NULL) {
+        cout<<ptr->data<<" ";
+        ptr=ptr->prev;
+    }
+}
+
+int main() {
+    int n,x;
+    cin>>n;
+    if(n<5 || n>=15) {
+        cout<<"Invalid Input"<<endl;
+        exit(0);
+    }
+    for(int i=0;i<n;i++) {
+        cin>>x;
+        insert(x);
+    }
+    delete_last();
+    displayf();
+    cout<<endl;
+    displayl();
+    return 0;
+}
