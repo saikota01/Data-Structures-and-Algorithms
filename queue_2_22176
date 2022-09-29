@@ -1,0 +1,34 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int key,n,count=0;
+    cin>>key;
+    if(key == 1) {
+        cin>>n;
+        if(n>9) {
+            cout<<"No other spectator is allowed"<<endl;
+            exit(0);
+        }
+        string s[n+1],s2[n];
+        for(int i=0;i<n;i++) {
+            cin>>s[i];
+            if(i%2==1) {
+                s2[count]=s[i];
+                count++;
+            }
+        }
+        cin>>key;
+        if(key == 2) {
+            for(int i=0;i<count;i++) {
+                cout<<s2[i]<<" ";
+            }
+        }
+    }
+    return 0;
+}
