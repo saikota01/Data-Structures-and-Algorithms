@@ -1,0 +1,44 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int a[20];
+int top=-1;
+
+void push(int x) {
+    top=top+1;
+    a[top]=x;
+}
+
+void pop() {
+    top=top-1;
+}
+
+void display() {
+    if(top==-1) {
+        cout<<"-1"<<endl;
+        exit(0);
+    }
+    for(int i=0;i<=top;i++) {
+        cout<<a[i]<<" ";
+    }
+}
+
+int main() {
+    int key,x;
+    do {
+        cin>>key;
+        if(key == 1) {
+            cin>>x;
+            push(x);
+        }
+        if(key == 2) {
+            pop();
+        }
+    }while(key!=3);
+    display();
+    return 0;
+}
